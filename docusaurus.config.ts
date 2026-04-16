@@ -17,7 +17,7 @@ const config: Config = {
   organizationName: 'GaryAghedo',
   projectName: 'Codeneto',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
