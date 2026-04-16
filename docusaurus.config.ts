@@ -2,34 +2,22 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Codeneto',
+  tagline: 'Practical programming, software development, AI, robotics, and cloud deployment insights.',
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
-  url: 'https://garyaghedo.github.io',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/blog/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  url: 'https://www.codeneto.com',
+  baseUrl: '/',
+  organizationName: 'GaryAghedo',
+  projectName: 'Codeneto',
 
   onBrokenLinks: 'throw',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -41,10 +29,10 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          path: 'content-docs',
+          routeBasePath: 'content', 
+          exclude: ['**/articles/**', '**/notes/**', '**/snippets/**'],
+      
         },
         blog: {
           showReadingTime: true,
@@ -52,11 +40,6 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -68,31 +51,199 @@ const config: Config = {
     ],
   ],
 
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'rust',
+        path: 'content/rust-and-systems-programming/articles',
+        routeBasePath: 'content/rust-and-systems-programming/articles', 
+        blogTitle: 'Rust & Systems Programming',
+        authorsMapPath: 'authors.yml',
+        blogDescription: 'Rust, WebAssembly, performance, and systems notes.',
+        showReadingTime: true,
+        postsPerPage: 10,
+
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'scala',
+      path: 'content/scala-and-functional-applications/articles',
+      routeBasePath: 'content/scala-and-functional-applications/articles',
+      blogTitle: 'Scala & Functional Applications',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'Scala, FP principles, and practical application patterns.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    },
+   ],
+   [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'ai-llm-agents-and-robotics',
+      path: 'content/ai-llm-agents-and-robotics/articles',
+      routeBasePath: 'content/ai-llm-agents-and-robotics/articles',
+      blogTitle: 'AI, LLM, Agents, and Robotics',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'AI, LLM, Agents, and Robotics insights and updates.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    },
+   ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'ai-llm-agents-and-robotics-notes',
+        path: 'content/ai-llm-agents-and-robotics/notes',
+        routeBasePath: 'content/ai-llm-agents-and-robotics/notes', 
+        blogTitle: 'AI, LLM, Agents, and Robotics Notes',
+        blogDescription: 'My technical notes and snippets.',
+        showReadingTime: true,
+        postsPerPage: 10,
+        sortPosts: 'ascending',
+      },
+    ],
+  
+   [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'smithy-and-api-design',
+      path: 'content/smithy-and-api-design/articles',
+      routeBasePath: 'content/smithy-and-api-design/articles',
+      blogTitle: 'Smithy & API Design',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'API design, Smithy tips, and best practices.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    }
+   ],
+   [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'go-programming',
+      path: 'content/go-programming/articles',
+      routeBasePath: 'content/go-programming/articles',
+      blogTitle: 'GO Programming',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'Go programming tips, tricks, and best practices.',
+      showReadingTime: true,
+      postsPerPage: 10, 
+    }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'python-programming',
+      path: 'content/python-programming/articles',
+      routeBasePath: 'content/python-programming/articles',
+      blogTitle: 'Python Programming',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'Python programming tips, tricks, and best practices.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'cloud-and-deployment',
+      path: 'content/cloud-and-deployment/articles',
+      routeBasePath: 'content/cloud-and-deployment/articles',
+      blogTitle: 'Cloud and Deployment',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'Cloud computing, deployment strategies, and best practices.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'cloud-and-deployment-notes',
+        path: 'content/cloud-and-deployment/notes',
+        routeBasePath: 'content/cloud-and-deployment/notes', 
+        blogTitle: 'Cloud and Deployment Notes',
+        blogDescription: 'Cloud and Deployment notes and snippets.',
+        showReadingTime: true,
+        postsPerPage: 10, 
+        sortPosts: 'ascending', 
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'data-databases-and-streaming',
+      path: 'content/data-databases-and-streaming/articles',
+      routeBasePath: 'content/data-databases-and-streaming/articles',
+      blogTitle: 'Data, Databases & Streaming',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'Data processing, databases, streaming technologies, and best practices.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+    {
+      id: 'miscellaneous',
+      path: 'content/miscellaneous/articles',
+      routeBasePath: 'content/miscellaneous/articles',
+      blogTitle: 'Miscellaneous',
+      authorsMapPath: 'authors.yml',
+      blogDescription: 'Various programming topics and best practices.',
+      showReadingTime: true,
+      postsPerPage: 10,
+    }
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'rust-notes', 
+        path: 'content/rust-and-systems-programming/notes',
+        routeBasePath: 'content/rust-and-systems-programming/notes', 
+        blogTitle: 'Rust & Systems Programming Notes',
+        blogDescription: 'My technical notes and snippets.',
+        showReadingTime: true,
+        postsPerPage: 10, 
+        sortPosts: 'ascending', 
+      },
+    ]
+    
+  ],
+
+
+
+
+
+
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/codeneto-light.png',
+        srcDark: 'img/codeneto-dark.png',
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          to: '/',
+          label: 'Homepage',
           position: 'left',
-          label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        { to: '/about-me', label: 'About me', position: 'right' },
+        { to: '/hire-me', label: 'Hire me', position: 'right' },
+        { to: 'https://www.youtube.com/@codeneto', label: 'Youtube', position: 'right' },
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          href: 'https://github.com/GaryAghedo',
+          label: 'My GitHub',
           position: 'right',
         },
+        { type: 'search', position: 'right' },
       ],
     },
     footer: {

@@ -1,0 +1,56 @@
+---
+title: About me
+description: About Gary Aghedo - Codeneto
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import Link from '@docusaurus/Link';
+
+<div style={{
+    display: 'grid',
+    gridTemplateColumns: '1fr 280px',
+    gap: '20px',
+    alignItems: 'start',
+  }}>
+    <div>
+      # Hi, I’m Gary 👋
+
+      Hi, I'm Gary Aghedo — a passionate software engineer based in London.
+
+In this blog, I write about practical programming, software development, AI, robotics, cloud deployment, and much more.
+
+My goal is to share my experiences—what I’ve learned, what I’m currently exploring, and the interesting challenges I encounter in day-to-day professional life.
+
+Over the years, I’ve worked with a number of notable companies and institutions, both large and small, across the UK tech sector. I’m also active in the tech community and regularly attend industry events, including international conferences like Scalar in Warsaw, Poland.
+
+In my spare time, I enjoy going to the gym and spending time with friends and family.
+
+
+      <div style={{ marginTop: 14 }}>
+        <Link to="https://www.youtube.com/@codeneto">YouTube</Link>
+        {' • '}
+        <Link to="https://github.com/GaryAghedo">GitHub</Link>
+      </div>
+
+    </div>
+
+    <div style={{
+    borderRadius: 16,
+    padding: 14,
+    border: '1px solid rgba(0,0,0,0.12)',
+    background: 'rgba(47,102,179,0.08)'
+  }}>
+    <img
+      src={useBaseUrl('img/about/gary.jpeg')}
+      alt="Gary Aghedo"
+      style={{
+        width: '100%',
+        borderRadius: 14,
+        display: 'block',
+        objectFit: 'cover'
+      }}
+    />
+    <div style={{ marginTop: 10, fontWeight: 800 }}>Gary Aghedo</div>
+    <div style={{ opacity: 0.8, fontSize: 13 }}>Software Engineer • Creator</div>
+  </div>
+</div>    
