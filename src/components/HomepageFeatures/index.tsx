@@ -1,9 +1,11 @@
+
 import React, { type ReactNode, useEffect, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
 
 type Stat = { label: string; value: string; to: string; external?: boolean; };
 type Card = {
@@ -320,30 +322,23 @@ const NEW_ITEMS_RIGHT: NewItem[] = [
 
 
 export default function HomepageFeatures(): ReactNode {
-
-
-
   const [slideIndex, setSlideIndex] = useState(0);
-
   const slide = SLIDES[slideIndex];
 
   useEffect(() => {
     const id = window.setInterval(() => {
       setSlideIndex((i) => (i + 1) % SLIDES.length);
-    }, 3000);
-
+    }, 4000); // Slowed down slightly for a smoother reading experience
     return () => window.clearInterval(id);
   }, []);
 
   return (
-
     <section className={styles.wrap}>
       <div className={clsx('container', styles.container)}>
-        {/* HERO */}
+        
+        {/* HERO SECTION - Now open and borderless */}
         <div className={clsx(styles.hero, styles.slideFade)}>
-
           <div className={styles.heroText}>
-
             <div className={styles.featured}>
               <div className={styles.featuredHeader}>
                 <div className={styles.featuredEyebrow}>Featured</div>
@@ -367,15 +362,14 @@ export default function HomepageFeatures(): ReactNode {
                   <p className={styles.featuredDesc}>{slide.featured.description}</p>
                   <div className={styles.featuredActions}>
                     <Link
-                      className={clsx('button button--primary', styles.cta)}
+                      className={clsx('button button--primary', styles.ctaPrimary)}
                       to={slide.featured.to}>
                       Read now →
                     </Link>
-
-                    <Link className={clsx('button button--secondary', styles.cta)} to={slide.featured.toLinkToArticle}>
+                    <Link className={styles.ctaText} to={slide.featured.toLinkToArticle}>
                       {slide.featured.textForLinkToArticle}
                     </Link>
-                    <Link className={clsx('button button--secondary', styles.cta)} to={slide.featured.toLinkToNotes}>
+                    <Link className={styles.ctaText} to={slide.featured.toLinkToNotes}>
                       {slide.featured.textForLinkToNotes}
                     </Link>
                   </div>
@@ -398,67 +392,56 @@ export default function HomepageFeatures(): ReactNode {
                 </Link>
               ))}
             </div>
-
           </div>
 
-
-          {/* RIGHT PANEL */}
-          <div className={styles.heroPanel} aria-hidden="true">
-            <div className={styles.heroPanel} aria-label="Featured navigation">
-              <div className={styles.panelTop}>
-                <div className={styles.dot} />
-                <div className={styles.dot} />
-                <div className={styles.dot} />
-              </div>
-
-              <div className={styles.panelBody}>
-                {/* NOW */}
-                <div className={styles.panelSection}>
-                  <div className={styles.panelSectionTitle}>Featured</div>
-                  <Link to={slide.rightPanel.now.to} className={styles.panelCard}>
-                    <div className={styles.panelCardTop}>
-                      <img
+          {/* RIGHT PANEL - Simplified, no fake browser header */}
+          <div className={styles.heroPanel} aria-label="Featured navigation">
+            <div className={styles.panelBody}>
+              <div className={styles.panelSection}>
+                <div className={styles.panelSectionTitle}>Up Next</div>
+                <Link to={slide.rightPanel.now.to} className={styles.panelCard}>
+                  <div className={styles.panelCardTop}>
+                    <div className={styles.panelCardIconWrap}>
+                        <img
                         className={styles.panelCardIcon}
                         src={useBaseUrl(slide.rightPanel.now.iconSrc)}
                         alt=""
                         aria-hidden="true"
-                      />
-                      <div className={styles.panelPills}>
-                        <span className={styles.panelPill}>{slide.rightPanel.now.type}</span>
-                        <span className={styles.panelPillMuted}>{slide.rightPanel.now.tag}</span>
-                      </div>
+                        />
                     </div>
-                    <div className={styles.panelCardTitle}>{slide.rightPanel.now.title}</div>
-                    <div className={styles.panelCardDesc}>{slide.rightPanel.now.description}</div>
-                    <div className={styles.panelCardCta}>Open →</div>
-                  </Link>
-                </div>
-
-                {/* QUICK LINKS */}
-                <div className={styles.panelSection}>
-                  <div className={styles.panelSectionTitle}>Explore</div>
-                  <div className={styles.panelLinks}>
-                    {slide.rightPanel.links.map((l) => (
-                      <Link
-                        key={l.to}
-                        to={l.to}
-                        className={styles.panelLink}
-                        {...(l.to.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        <img className={styles.panelLinkIcon} src={useBaseUrl(l.iconSrc)} alt="" aria-hidden="true" />
-                        <span>{l.label}</span>
-                        <span className={styles.panelArrow}>→</span>
-                      </Link>
-                    ))}
+                    <div className={styles.panelPills}>
+                      <span className={styles.panelPill}>{slide.rightPanel.now.type}</span>
+                      <span className={styles.panelPillMuted}>{slide.rightPanel.now.tag}</span>
+                    </div>
                   </div>
+                  <div className={styles.panelCardTitle}>{slide.rightPanel.now.title}</div>
+                  <div className={styles.panelCardDesc}>{slide.rightPanel.now.description}</div>
+                  <div className={styles.panelCardCta}>Open →</div>
+                </Link>
+              </div>
+
+              <div className={styles.panelSection}>
+                <div className={styles.panelSectionTitle}>Explore</div>
+                <div className={styles.panelLinks}>
+                  {slide.rightPanel.links.map((l) => (
+                    <Link
+                      key={l.to}
+                      to={l.to}
+                      className={styles.panelLink}
+                      {...(l.to.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      <img className={styles.panelLinkIcon} src={useBaseUrl(l.iconSrc)} alt="" aria-hidden="true" />
+                      <span>{l.label}</span>
+                      <span className={styles.panelArrow}>→</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
-        {/* CARDS */}
+        {/* CARDS SECTION */}
         <div className={styles.sectionHeader}>
           <Heading as="h2" className={styles.sectionTitle}>
             What you’ll find here
@@ -471,105 +454,89 @@ export default function HomepageFeatures(): ReactNode {
         <div className={styles.grid}>
           {CARDS.map((c) => (
             <div key={c.title} className={styles.card}>
-              <div className={styles.cardIcon} aria-hidden="true">
-                <img className={styles.cardIconImg} src={useBaseUrl(c.iconSrc)} alt={c.iconAlt} />
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIcon} aria-hidden="true">
+                    <img className={styles.cardIconImg} src={useBaseUrl(c.iconSrc)} alt={c.iconAlt} />
+                </div>
+                <Heading as="h3" className={styles.cardTitle}>
+                    {c.title}
+                </Heading>
               </div>
-              <Heading as="h3" className={styles.cardTitle}>
-                {c.title}
-              </Heading>
               <p className={styles.cardDesc}>{c.description}</p>
-
+              
+              {/* Changed from blocky buttons to elegant text links */}
               <div className={styles.cardActions}>
-                <Link
-                  className={clsx('button button--primary', styles.cardBtn)}
-                  to={c.articlesTo}
-                >
-                  Articles →
+                <Link className={styles.cardTextLink} to={c.articlesTo}>
+                  Articles <span className={styles.arrow}>→</span>
                 </Link>
-
-                <Link
-                  className={clsx('button button--secondary', styles.cardBtn)}
-                  to={c.notesTo}
-                >
-                  Notes →
+                <Link className={styles.cardTextLink} to={c.notesTo}>
+                  Notes <span className={styles.arrow}>→</span>
                 </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* BOTTOM CTA */}
-        {/* NEW / RECENT */}
-        {/* NEW / RECENT */}
-        <div className={styles.newsPanel}>
-          {/* LEFT: feed list */}
-          <div className={styles.newsCol}>
-            <div className={styles.newsFeed}>
-              {NEW_ITEMS.map((item) => (
-                <Link key={item.to} to={item.to} className={styles.newsRow}>
-                  <div className={styles.newsMedia} aria-hidden="true">
-                    <img
-                      className={styles.newsMediaImg}
-                      src={useBaseUrl(item.coverSrc)}
-                      alt=""
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div className={styles.newsMain}>
-                    <div className={styles.newsTop}>
-                      <span className={styles.newsBadge}>{item.type}</span>
-                      <span className={styles.newsTag}>{item.tag}</span>
-                    </div>
-
-                    <div className={styles.newsTitle}>{item.title}</div>
-                    <div className={styles.newsMeta}>{item.description}</div>
-                  </div>
-
-                  <div className={styles.newsRight} aria-hidden="true">→</div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* MIDDLE: title + description centered */}
+        {/* NEW / RECENT SECTION */}
+        <div className={styles.newsSection}>
           <div className={styles.newsCenter}>
             <Heading as="h2" className={styles.newsPanelTitle}>
               New articles & notes
             </Heading>
           </div>
 
-          {/* RIGHT: another 3 items */}
-          <div className={styles.newsCol}>
-            <div className={styles.newsFeed}>
-              {NEW_ITEMS_RIGHT.map((item) => (
-                <Link key={item.to} to={item.to} className={styles.newsRow}>
-                  <div className={styles.newsMedia} aria-hidden="true">
-                    <img
-                      className={styles.newsMediaImg}
-                      src={useBaseUrl(item.coverSrc)}
-                      alt=""
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div className={styles.newsMain}>
-                    <div className={styles.newsTop}>
-                      <span className={styles.newsBadge}>{item.type}</span>
-                      <span className={styles.newsTag}>{item.tag}</span>
+          <div className={styles.newsPanel}>
+            <div className={styles.newsCol}>
+              <div className={styles.newsFeed}>
+                {NEW_ITEMS.map((item) => (
+                  <Link key={item.to} to={item.to} className={styles.newsRow}>
+                    <div className={styles.newsMedia} aria-hidden="true">
+                      <img
+                        className={styles.newsMediaImg}
+                        src={useBaseUrl(item.coverSrc)}
+                        alt=""
+                        loading="lazy"
+                      />
                     </div>
+                    <div className={styles.newsMain}>
+                      <div className={styles.newsTop}>
+                        <span className={styles.newsBadge}>{item.type}</span>
+                        <span className={styles.newsTag}>{item.tag}</span>
+                      </div>
+                      <div className={styles.newsTitle}>{item.title}</div>
+                      <div className={styles.newsMeta}>{item.description}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
 
-                    <div className={styles.newsTitle}>{item.title}</div>
-                    <div className={styles.newsMeta}>{item.description}</div>
-                  </div>
-
-                  <div className={styles.newsRight} aria-hidden="true">→</div>
-                </Link>
-              ))}
+            <div className={styles.newsCol}>
+              <div className={styles.newsFeed}>
+                {NEW_ITEMS_RIGHT.map((item) => (
+                  <Link key={item.to} to={item.to} className={styles.newsRow}>
+                    <div className={styles.newsMedia} aria-hidden="true">
+                      <img
+                        className={styles.newsMediaImg}
+                        src={useBaseUrl(item.coverSrc)}
+                        alt=""
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className={styles.newsMain}>
+                      <div className={styles.newsTop}>
+                        <span className={styles.newsBadge}>{item.type}</span>
+                        <span className={styles.newsTag}>{item.tag}</span>
+                      </div>
+                      <div className={styles.newsTitle}>{item.title}</div>
+                      <div className={styles.newsMeta}>{item.description}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-
 
       </div>
     </section>
